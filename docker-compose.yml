@@ -9,8 +9,7 @@ x-minio-common: &minio-common
     MINIO_ROOT_USER: ${MINIO_ROOT_USER}
     MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
     # These URLs are crucial for MinIO to work correctly behind a proxy
-    MINIO_BROWSER_REDIRECT_URL: ${MINIO_ENDPOINT}
-    MINIO_SERVER_URL: ${MINIO_ENDPOINT}/
+    MINIO_BROWSER_REDIRECT_URL: ${MINIO_BROWSER_REDIRECT_URL}
   healthcheck:
     test: ["CMD", "mc", "ready", "local"]
     interval: 5s

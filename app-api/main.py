@@ -46,6 +46,7 @@ app = FastAPI(title="MinIO Uploader API")
 
 # Cấu hình MinIO Client
 MINIO_API_ENDPOINT = os.getenv("MINIO_API_ENDPOINT", "localhost:9000")
+MINIO_PUBLLIC_URL = os.getenv("MINIO_PUBLLIC_URL", "http://minio.local")
 MINIO_ROOT_USER = os.getenv("MINIO_ROOT_USER")
 MINIO_ROOT_PASSWORD = os.getenv("MINIO_ROOT_PASSWORD")
 # --- CẢI TIẾN: Sử dụng biến môi trường để xác định chế độ secure ---
@@ -108,9 +109,8 @@ async def create_upload_file(
             content_type=content_type,
         )
         
-        # --- CẢI TIẾN: Xây dựng URL công khai từ cấu hình hiện có ---
-        protocol = "https" if USE_SECURE_MINIO else "http"
-        public_url = f"{protocol}://{MINIO_API_ENDPOINT}/{bucket}/{object_name}"
+        # Xây dựng URL công khai từ biến môi trường MINIO_PUBLLIC_URL ---
+        public_url = f"{MINIO_PUBLLIC_URL.strip('/')}/{bucket}/{object_name}"
 
         return {
             "bucket_name": bucket,
