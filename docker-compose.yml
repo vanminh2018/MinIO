@@ -1,0 +1,45 @@
+# Settings and configurations that are common for all containers
+x-minio-common: &minio-common
+  image: minio/minio
+  command: server --console-address ":9001" /data
+  env_file:
+    - .env
+  environment:
+    # These are now loaded from .env but can be overridden here
+    MINIO_ROOT_USER: ${MINIO_ROOT_USER}
+    MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
+    # These URLs are crucial for MinIO to work correctly behind a proxy
+    MINIO_BROWSER_REDIRECT_URL: ${MINIO_ENDPOINT}
+    MINIO_SERVER_URL: ${MINIO_ENDPOINT}/
+  healthcheck:
+    test: ["CMD", "mc", "ready", "local"]
+    interval: 5s
+    timeout: 5s
+    retries: 5
+
+# starts 4 docker containers running minio server instances.
+# using nginx reverse proxy, load balancing, you can access
+# it through port 9000.
+services:
+  minio1:
+    <<: *minio-common
+    hostname: minio1
+    volumes:
+      - /data:/data
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+
+  app-api:
+    build:
+      context: ./app-api
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8000"
+    env_file:
+      - .env
+    depends_on:
+      minio1:
+        condition: service_healthy
+    volumes:
+      - ./app-api:/app # Mount local code for development, remove for production

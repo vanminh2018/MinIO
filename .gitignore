@@ -1,0 +1,29 @@
+# Byte-compiled / tối ưu hóa / file DLL
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Môi trường ảo
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak
+venv.bak
+
+# Cấu hình IDE / Công cụ
+.bmad-core/
+.gemini/
+.windsurf/
+.idea/
+.vscode/
+
+# Docker
+# Bỏ qua các file override, thường dùng cho cấu hình local
+docker-compose.override.yml
+
+# File do hệ điều hành tạo ra
+.DS_Store
+Thumbs.db
