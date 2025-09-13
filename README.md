@@ -24,8 +24,8 @@ API này cung cấp một giao diện để tải lên và xóa các tệp từ 
 1.  **Clone repository này:**
 
     ```bash
-    git clone <URL_REPOSITORY_CỦA_BẠN>
-    cd <TÊN_THƯ_MỤC_DỰ_ÁN>
+    git clone https://github.com/vanminh2018/MinIO.git
+    cd MinIO
     ```
 
 2.  **Tạo tệp môi trường:**
