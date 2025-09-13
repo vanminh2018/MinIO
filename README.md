@@ -43,10 +43,13 @@ API này cung cấp một giao diện để tải lên và xóa các tệp từ 
     MINIO_ROOT_USER=your_minio_user
     MINIO_ROOT_PASSWORD=your_minio_password
 
-    # Public URL for MinIO (for client-side access)
-    MINIO_ENDPOINT=http://localhost:9000
+    # URL để MinIO Console chuyển hướng sau khi đăng nhập (ví dụ: http://console.minio.local)
+    MINIO_BROWSER_REDIRECT_URL=http://console.minio.local
 
-    # Internal API endpoint for service-to-service communication inside Docker network
+    # URL công khai để truy cập các tệp đã tải lên (ví dụ: http://minio.local)
+    MINIO_PUBLLIC_URL=http://minio.local
+
+    # Endpoint API nội bộ cho giao tiếp giữa các service trong mạng Docker
     MINIO_API_ENDPOINT=http://minio1:9000
 
     # Token để xác thực API
@@ -105,8 +108,8 @@ curl -X POST "http://localhost:8001/upload/minio" \
 ```json
 {
   "bucket_name": "my-test-bucket",
-  "file_name": "images/avatars/2025-09-13_12-00-00_abcdef_yourfile.jpg",
-  "url": "http://localhost:9000/my-test-bucket/images/avatars/2025-09-13_12-00-00_abcdef_yourfile.jpg",
+  "file_name": "images/avatars/yourfile.jpg",
+  "url": "http://minio.local/my-test-bucket/images/avatars/yourfile.jpg",
   "file_size": 123456,
   "content_type": "image/jpeg"
 }
@@ -140,7 +143,7 @@ curl -X DELETE "http://localhost:8001/delete/minio" \
      -H "Content-Type: application/json" \
      -d '{
          "bucket_name": "my-test-bucket",
-         "object_name": "images/avatars/2025-09-13_12-00-00_abcdef_yourfile.jpg"
+         "object_name": "images/avatars/yourfile.jpg"
      }'
 ```
 
@@ -149,7 +152,7 @@ curl -X DELETE "http://localhost:8001/delete/minio" \
 ```json
 {
   "status": "success",
-  "message": "File 'images/avatars/2025-09-13_12-00-00_abcdef_yourfile.jpg' was successfully deleted from bucket 'my-test-bucket'."
+  "message": "File 'images/avatars/yourfile.jpg' was successfully deleted from bucket 'my-test-bucket'."
 }
 ```
 
