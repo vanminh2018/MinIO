@@ -92,10 +92,7 @@ async def create_upload_file(
         if file_size == 0:
             raise HTTPException(status_code=400, detail="Uploaded file is empty.")
 
-        timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-        random_str = uuid.uuid4().hex[:6]
-        original_filename = file.filename
-        object_name = f"{timestamp}_{random_str}_{original_filename}"
+        object_name = file.filename
 
         if folder:
             object_name = f"{folder.strip('/')}/{object_name}"
