@@ -81,7 +81,7 @@ Thay thế `<SECRET_TOKEN>` bằng giá trị bạn đã đặt trong tệp `.en
 
 #### 1. Tải lên tệp
 
--   **Endpoint**: `POST /upload/minio`
+-   **Endpoint**: `POST /minio/upload`
 -   **Mô tả**: Tải một tệp lên một bucket cụ thể trên MinIO. Nếu bucket chưa tồn tại, nó sẽ được tạo tự động.
 -   **Content-Type**: `multipart/form-data`
 
@@ -96,7 +96,7 @@ Thay thế `<SECRET_TOKEN>` bằng giá trị bạn đã đặt trong tệp `.en
 **Ví dụ sử dụng `curl`:**
 
 ```bash
-curl -X POST "http://localhost:8001/upload/minio" \
+curl -X POST "http://localhost:8001/minio/upload" \
      -H "Authorization: Bearer <SECRET_TOKEN>" \
      -F "bucket=my-test-bucket" \
      -F "folder=images/avatars" \
@@ -125,7 +125,7 @@ curl -X POST "http://localhost:8001/upload/minio" \
 
 #### 2. Xóa tệp
 
--   **Endpoint**: `DELETE /delete/minio`
+-   **Endpoint**: `DELETE /minio/delete`
 -   **Mô tả**: Xóa một đối tượng (tệp) khỏi một bucket trên MinIO.
 
 **Body (JSON):**
@@ -138,7 +138,7 @@ curl -X POST "http://localhost:8001/upload/minio" \
 **Ví dụ sử dụng `curl`:**
 
 ```bash
-curl -X DELETE "http://localhost:8001/delete/minio" \
+curl -X DELETE "http://localhost:8001/minio/delete" \
      -H "Authorization: Bearer <SECRET_TOKEN>" \
      -H "Content-Type: application/json" \
      -d '{

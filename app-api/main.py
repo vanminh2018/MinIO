@@ -71,13 +71,13 @@ def read_root():
     return {"message": "Welcome to MinIO File Uploader API"}
 
 
-@app.post("/upload/minio", dependencies=[Depends(verify_token)])
+@app.post("/minio/upload", dependencies=[Depends(verify_token)])
 async def create_upload_file(
     bucket: str = Form(...),
     folder: str = Form(""),
     file: UploadFile = File(...)
 ):
-    log.info(f"POST /upload/minio - Params: bucket='{bucket}', folder='{folder}', filename='{file.filename}'")
+    log.info(f"POST /minio/upload - Params: bucket='{bucket}', folder='{folder}', filename='{file.filename}'")
 
     try:
         found = minio_client.bucket_exists(bucket)
@@ -124,9 +124,9 @@ async def create_upload_file(
         raise HTTPException(status_code=500, detail=f"An unexpected error occurred: {str(e)}")
 
 
-@app.delete("/delete/minio", dependencies=[Depends(verify_token)])
+@app.delete("/minio/delete", dependencies=[Depends(verify_token)])
 async def delete_file(request: DeleteFileRequest):
-    log.info(f"DELETE /delete/minio - Params: {request.dict()}")
+    log.info(f"DELETE /minio/delete - Params: {request.dict()}")
 
     try:
         # Kiểm tra xem object có tồn tại không để trả về lỗi 404 chính xác
