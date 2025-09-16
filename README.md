@@ -178,15 +178,15 @@ http://minio.local/pdfjs/web/viewer.html?file=http://minio.local/fastapi-minio/m
 
 ### Cấu hình Nginx Proxy
 
-![image-20250916142449326](/home/minhbv/docker/minio/assets/image-20250916142449326.png)
+![image-20250916142449326](./assets/image-20250916142449326.png)
 
 Trong `minio.local`:
 
-![image-20250916142715780](/home/minhbv/docker/minio/assets/image-20250916142715780.png)
+![image-20250916142715780](./assets/image-20250916142715780.png)
 
 Tùy chỉnh Advanced:
 
-![image-20250916142901317](/home/minhbv/docker/minio/assets/image-20250916142901317.png)
+![image-20250916142901317](./assets/image-20250916142901317.png)
 
 ```nginx
 # Allow special characters in headers
