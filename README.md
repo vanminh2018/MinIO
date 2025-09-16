@@ -11,6 +11,9 @@ API này cung cấp một giao diện để tải lên và xóa các tệp từ 
   - [Endpoints](#endpoints)
     - [Tải lên tệp](#1-tải-lên-tệp)
     - [Xóa tệp](#2-xóa-tệp)
+- [Xem tệp PDF](#xem-tệp-pdf)
+  - [URL để xem PDF](#url-để-xem-pdf)
+  - [Cấu hình Nginx Proxy](#cấu-hình-nginx-proxy)
 
 ## Yêu cầu
 
