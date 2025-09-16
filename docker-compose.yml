@@ -42,3 +42,11 @@ services:
         condition: service_healthy
     volumes:
       - ./app-api:/app # Mount local code for development, remove for production
+
+  nginx-pdf-viewer:
+    image: nginx:alpine
+    ports:
+      - "8002:80"
+    volumes:
+      - ./pdf-viewer:/usr/share/nginx/html
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
